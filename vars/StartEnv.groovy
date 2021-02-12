@@ -6,9 +6,9 @@ def call (){
         env.SERVICE_NAME=s
         stage("Start ${SERVICE_NAME}") {
             sh '''
-                [[ "X${SERVICE_NAME}" = "Xclickhouse" ]] && sed -i "s/ZOOKEEPER_HOST/zookeeper-${BUILD_HASH}-j/" ./${env.SERVICES_DIR}/clickhouse-values.yaml
-                helm install --atomic -f ./${env.SERVICES_DIR}/${SERVICE_NAME}-values.yaml ${SERVICE_NAME}-${BUILD_HASH} \
-                  --set nameOverride="j" -n "jenkins" carrotquest/${env.SERVICES_HELM} --version ${env.SERVICES_HELM_VERSION}
+                [[ "X${SERVICE_NAME}" = "Xclickhouse" ]] && sed -i "s/ZOOKEEPER_HOST/zookeeper-${BUILD_HASH}-j/" ./${SERVICES_DIR}/clickhouse-values.yaml
+                helm install --atomic -f ./${SERVICES_DIR}/${SERVICE_NAME}-values.yaml ${SERVICE_NAME}-${BUILD_HASH} \
+                  --set nameOverride="j" -n "jenkins" carrotquest/${SERVICES_HELM} --version ${SERVICES_HELM_VERSION}
             '''
         }
     }
